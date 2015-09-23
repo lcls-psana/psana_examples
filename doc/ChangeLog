@@ -11,6 +11,10 @@ Package author: Andy Salnikov
 Please describe any modifications that you made to the package in the
 reverse time order.
 
+Tag: V00-05-02
+2015-09-23 David Schneider
+- restore io flags after writing hex in DumpDamage
+
 Tag: V00-05-01
 2015-06-09 David Schneider
 - Update DumpEpics.cpp example to cover getting data array for waveforms. JIRA PSAS-158

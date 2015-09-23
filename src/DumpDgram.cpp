@@ -140,7 +140,7 @@ DumpDgram::dgramDump(Event &evt, const std::string & hdr)
                 << " run=" << file.run()
                 << " stream=" << file.stream()
                 << " chunk=" << file.chunk()
-		<< " offset=" << offset
+                << " offset=" << offset
                 << std::endl;
     }
   }

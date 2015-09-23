@@ -22,10 +22,10 @@
 #include <iostream>
 #include <iomanip>
 #include <algorithm>
-
 //-------------------------------
 // Collaborating Class Headers --
 //-------------------------------
+#include "boost/io/ios_state.hpp"
 #include "MsgLogger/MsgLogger.h"
 
 //-----------------------------------------------------------------------
@@ -123,6 +123,8 @@ DumpDamage::~DumpDamage ()
 
 void 
 DumpDamage::printKeysAndDamage(std::ostream& out, Event &evt, Env &env) {
+
+  boost::io::ios_flags_saver ifs(out);
 
   m_damageMap = evt.get();
   bool inDamageMap;
