@@ -46,7 +46,7 @@ DumpEpix::DumpEpix (const std::string& name)
   : Module(name)
   , m_src()
 {
-  m_src = configSrc("source", "DetInfo(:Epix)");
+  m_src = configSrc("source", "DetInfo(:Epix100a)");
   // DetInfo(:Epix) or (:Epix*) does not work for Epix10k and Epix100a, 
   // which need to be specified explicitly in parameters as
   // [psana_examples.DumpEpix]
@@ -458,6 +458,169 @@ DumpEpix::beginRun(Event& evt, Env& env)
       }
     }
   }
+
+
+
+  shared_ptr<Psana::Epix::Config100aV2> config100av2 = env.configStore().get(m_src);
+  if (config100av2) {
+    WithMsgLog(name(), info, str) {
+      str << "Psana::Epix::Config100aV2:";
+      str << "\n  version                     = " << config100av2->version();
+      //str << "\n  runTrigDelay                = " << config100av2->runTrigDelay();
+      //str << "\n  daqTrigDelay                = " << config100av2->daqTrigDelay();
+      //str << "\n                  = " << config100av2->();
+      str << "\n  usePgpEvr                   = " << config100av2->usePgpEvr();
+      str << "\n  evrRunCode;                 = " << config100av2->evrRunCode();
+      str << "\n  evrDaqCode                  = " << config100av2->evrDaqCode();
+      str << "\n  evrRunTrigDelay             = " << config100av2->evrRunTrigDelay();
+      str << "\n  epixRunTrigDelay            = " << config100av2->epixRunTrigDelay();
+      str << "\n  dacSetting                  = " << config100av2->dacSetting();
+      str << "\n  asicGR                      = " << int(config100av2->asicGR());
+      str << "\n  asicAcq                     = " << int(config100av2->asicAcq());
+      str << "\n  asicR0                      = " << int(config100av2->asicR0());
+      str << "\n  asicPpmat                   = " << int(config100av2->asicPpmat());
+      str << "\n  asicPpbe                    = " << int(config100av2->asicPpbe());
+      str << "\n  asicRoClk                   = " << int(config100av2->asicRoClk());
+      str << "\n  asicGRControl               = " << int(config100av2->asicGRControl());
+      str << "\n  asicAcqControl              = " << int(config100av2->asicAcqControl());
+      str << "\n  asicR0Control               = " << int(config100av2->asicR0Control());
+      str << "\n  asicPpmatControl            = " << int(config100av2->asicPpmatControl());
+      str << "\n  asicPpbeControl             = " << int(config100av2->asicPpbeControl());
+      str << "\n  asicR0ClkControl            = " << int(config100av2->asicR0ClkControl());
+      str << "\n  prepulseR0En                = " << int(config100av2->prepulseR0En());
+      str << "\n  adcStreamMode               = " << int(config100av2->adcStreamMode());
+      str << "\n  testPatternEnable           = " << int(config100av2->testPatternEnable());
+      str << "\n  SyncMode                    = " << int(config100av2->SyncMode());
+      str << "\n  R0Mode                      = " << int(config100av2->R0Mode());
+      str << "\n  acqToAsicR0Delay            = " << int(config100av2->acqToAsicR0Delay());
+      str << "\n  asicR0ToAsicAcq             = " << int(config100av2->asicR0ToAsicAcq());
+      str << "\n  asicAcqWidth                = " << int(config100av2->asicAcqWidth());
+      str << "\n  asicAcqLToPPmatL            = " << int(config100av2->asicAcqLToPPmatL());
+      str << "\n  asicPPmatToReadout          = " << int(config100av2->asicPPmatToReadout());
+      str << "\n  asicRoClkHalfT              = " << int(config100av2->asicRoClkHalfT());
+      str << "\n  adcReadsPerPixel            = " << int(config100av2->adcReadsPerPixel());
+      str << "\n  adcClkHalfT                 = " << int(config100av2->adcClkHalfT());
+      str << "\n  asicR0Width                 = " << int(config100av2->asicR0Width());
+      str << "\n  adcPipelineDelay            = " << int(config100av2->adcPipelineDelay());
+
+      str << "\n  adcPipelineDelay0           = " << config100av2->adcPipelineDelay0();
+      str << "\n  adcPipelineDelay1           = " << config100av2->adcPipelineDelay1();
+      str << "\n  adcPipelineDelay2           = " << config100av2->adcPipelineDelay2();
+      str << "\n  adcPipelineDelay3           = " << config100av2->adcPipelineDelay3();
+
+      str << "\n  SyncWidth                   = " << int(config100av2->SyncWidth());
+      str << "\n  SyncDelay                   = " << int(config100av2->SyncDelay());
+      str << "\n  prepulseR0Width             = " << int(config100av2->prepulseR0Width());
+      str << "\n  prepulseR0Delay             = " << int(config100av2->prepulseR0Delay());
+      str << "\n  digitalCardId0              = " << int(config100av2->digitalCardId0());
+      str << "\n  digitalCardId1              = " << int(config100av2->digitalCardId1());
+      str << "\n  analogCardId0               = " << int(config100av2->analogCardId0());
+      str << "\n  analogCardId1               = " << int(config100av2->analogCardId1());
+      str << "\n  numberOfAsicsPerRow         = " << int(config100av2->numberOfAsicsPerRow());
+      str << "\n  numberOfAsicsPerColumn      = " << int(config100av2->numberOfAsicsPerColumn());
+      str << "\n  numberOfRowsPerAsic         = " << int(config100av2->numberOfRowsPerAsic());
+      str << "\n  numberOfReadableRowsPerAsic = " << int(config100av2->numberOfReadableRowsPerAsic());
+      str << "\n  numberOfPixelsPerAsicRow    = " << int(config100av2->numberOfPixelsPerAsicRow());
+      str << "\n  calibrationRowCountPerASIC  = " << int(config100av2->calibrationRowCountPerASIC());
+      str << "\n  environmentalRowCountPerASIC= " << int(config100av2->environmentalRowCountPerASIC());
+      str << "\n  baseClockFrequency          = " << int(config100av2->baseClockFrequency());
+      str << "\n  asicMask                    = " << int(config100av2->asicMask());
+
+      str << "\n  enableAutomaticRunTrigger   = " << config100av2->enableAutomaticRunTrigger();
+      str << "\n  numberOf125MhzTicksPerRunTrigger = " << config100av2->numberOf125MhzTicksPerRunTrigger();
+
+      str << "\n  scopeEnable                 = " << int(config100av2->scopeEnable());
+      str << "\n  scopeTrigEdge               = " << int(config100av2->scopeTrigEdge());
+      str << "\n  scopeTrigChan               = " << int(config100av2->scopeTrigChan());
+      str << "\n  scopeArmMode                = " << int(config100av2->scopeArmMode());
+      str << "\n  scopeADCThreshold           = " << int(config100av2->scopeADCThreshold());
+      str << "\n  scopeTrigHoldoff            = " << int(config100av2->scopeTrigHoldoff());
+      str << "\n  scopeTrigOffset             = " << int(config100av2->scopeTrigOffset());
+      str << "\n  scopeTraceLength            = " << int(config100av2->scopeTraceLength());
+      str << "\n  scopeADCsameplesToSkip      = " << int(config100av2->scopeADCsameplesToSkip());
+      str << "\n  scopeChanAwaveformSelect    = " << int(config100av2->scopeChanAwaveformSelect());
+      str << "\n  scopeChanBwaveformSelect    = " << int(config100av2->scopeChanBwaveformSelect());
+      str << "\n  numberOfRows                = " << int(config100av2->numberOfRows());
+      str << "\n  numberOfReadableRows        = " << int(config100av2->numberOfReadableRows());
+      str << "\n  numberOfColumns             = " << int(config100av2->numberOfColumns());
+      str << "\n  numberOfCalibrationRows     = " << int(config100av2->numberOfCalibrationRows());
+      str << "\n  numberOfEnvironmentalRows   = " << int(config100av2->numberOfEnvironmentalRows());
+      str << "\n  numberOfAsics               = " << int(config100av2->numberOfAsics());
+
+      //virtual ndarray<const uint16_t, 2> asicPixelConfigArray() const = 0;
+      str << "\n  asicPixelConfigArray() = " << config100av2->asicPixelConfigArray();    //New
+
+      //virtual ndarray<const uint8_t, 2> calibPixelConfigArray() const = 0;
+      str << "\n  calibPixelConfigArray() =" << config100av2->calibPixelConfigArray();    //New;
+      //str << "\n  calibPixelConfigArray() =";    //New;
+      //ndarray<const uint8_t, 2>& nda = config100av2->calibPixelConfigArray();
+      //for(std::vector<int>::iterator it = v.begin(); it != v.end(); ++it) { str << " " << *it; }
+
+
+
+
+      //virtual std::vector<int> asics_shape() const = 0;
+      str << "\n  asics_shape()            =";
+      std::vector<int> v = config100av2->asics_shape();
+      for(std::vector<int>::iterator it = v.begin(); it != v.end(); ++it) { str << " " << *it; }
+
+      //virtual const Epix::Asic100aConfigV1& asics(uint32_t i0) const = 0;
+      const int nasics = config100av2->numberOfAsics();
+      for (int i = 0; i != nasics; ++ i) {
+        const Psana::Epix::Asic100aConfigV1& aconfig = config100av2->asics(i);
+        str << "\n   Psana::Epix::Asic100aConfigV1 #" << i << ":";
+        str << "\n     pulserVsPixelOnDelay                          = " << int(aconfig.pulserVsPixelOnDelay());
+        str << "\n     pulserSync                                    = " << int(aconfig.pulserSync());
+        str << "\n     dummyTest                                     = " << int(aconfig.dummyTest());
+        str << "\n     dummyMask                                     = " << int(aconfig.dummyMask());
+        str << "\n     testPulserLevel                               = " << int(aconfig.testPulserLevel());
+        str << "\n     pulserCounterDirection                        = " << int(aconfig.pulserCounterDirection());
+        str << "\n     automaticTestModeEnable                       = " << int(aconfig.automaticTestModeEnable());
+        str << "\n     testMode                                      = " << int(aconfig.testMode());
+        str << "\n     testModeWithDarkFrame                         = " << int(aconfig.testModeWithDarkFrame());
+        str << "\n     highResolutionModeTest                        = " << int(aconfig.highResolutionModeTest());
+        str << "\n     pulserReset                                   = " << int(aconfig.pulserReset());
+        str << "\n     digitalMonitorMux1                            = " << int(aconfig.digitalMonitorMux1());
+        str << "\n     digitalMonitorMux2                            = " << int(aconfig.digitalMonitorMux2());
+        str << "\n     testPulserCurrent                             = " << int(aconfig.testPulserCurrent());
+        str << "\n     testPointSystemOutputDynamicRange             = " << int(aconfig.testPointSystemOutputDynamicRange());
+        str << "\n     digitalMonitor1Enable                         = " << int(aconfig.digitalMonitor1Enable());
+        str << "\n     digitalMonitor2Enable                         = " << int(aconfig.digitalMonitor2Enable());
+        str << "\n     LVDS_ImpedenceMatchingEnable                  = " << int(aconfig.LVDS_ImpedenceMatchingEnable());
+        str << "\n     VRefBaselineDac                               = " << int(aconfig.VRefBaselineDac());
+        str << "\n     extraRowsLowReferenceValue                    = " << int(aconfig.extraRowsLowReferenceValue());
+        str << "\n     testPointSystemTemperatureCompensationEnable  = " << int(aconfig.testPointSystemTemperatureCompensationEnable()  );
+        str << "\n     testPointSytemInputSelect                     = " << int(aconfig.testPointSytemInputSelect());
+        str << "\n     programmableReadoutDelay                      = " << int(aconfig.programmableReadoutDelay());
+        str << "\n     outputDriverOutputDynamicRange0               = " << int(aconfig.outputDriverOutputDynamicRange0());
+        str << "\n     outputDriverOutputDynamicRange1               = " << int(aconfig.outputDriverOutputDynamicRange1());
+        str << "\n     balconyEnable                                 = " << int(aconfig.balconyEnable());
+        str << "\n     balconyDriverCurrent                          = " << int(aconfig.balconyDriverCurrent());
+        str << "\n     fastPowerPulsingSpeed                         = " << int(aconfig.fastPowerPulsingSpeed());
+        str << "\n     fastPowerPulsingEnable                        = " << int(aconfig.fastPowerPulsingEnable());
+        str << "\n     preamplifierCurrent                           = " << int(aconfig.preamplifierCurrent());
+        str << "\n     pixelOutputBufferCurrent                      = " << int(aconfig.pixelOutputBufferCurrent());
+        str << "\n     pixelBufferAndPreamplifierDrivingCapabilities = " << int(aconfig.pixelBufferAndPreamplifierDrivingCapabilities());
+        str << "\n     outputDriverTemperatureCompensationEnable     = " << int(aconfig.outputDriverTemperatureCompensationEnable());
+        str << "\n     pixelFilterLevel                              = " << int(aconfig.pixelFilterLevel());
+        str << "\n     bandGapReferenceTemperatureCompensationBits   = " << int(aconfig.bandGapReferenceTemperatureCompensationBits());
+        str << "\n     outputDriverDrivingCapabilitiesAndStability   = " << int(aconfig.outputDriverDrivingCapabilitiesAndStability());
+        str << "\n     outputDriverDacReferenceBias                  = " << int(aconfig.outputDriverDacReferenceBias());
+        str << "\n     testPointSystemTemperatureCompensationGain    = " << int(aconfig.testPointSystemTemperatureCompensationGain());
+        str << "\n     testPointSystemInputCommonMode                = " << int(aconfig.testPointSystemInputCommonMode());
+        str << "\n     outputDriverTemperatureCompensationGain0      = " << int(aconfig.outputDriverTemperatureCompensationGain0());
+        str << "\n     outputDriverInputCommonMode0                  = " << int(aconfig.outputDriverInputCommonMode0());
+        str << "\n     testBackEnd                                   = " << int(aconfig.testBackEnd());
+        str << "\n     interleavedReadOutEnable                      = " << int(aconfig.interleavedReadOutEnable());
+        str << "\n     EXEC_DelayEnable                              = " << int(aconfig.EXEC_DelayEnable());
+        str << "\n     CCK_RegDelayEnable                            = " << int(aconfig.CCK_RegDelayEnable());
+        str << "\n     syncPinEnable                                 = " << int(aconfig.syncPinEnable());
+        str << "\n     RowStartAddr                                  = " << int(aconfig.RowStartAddr());
+        str << "\n     RowStopAddr                                   = " << int(aconfig.RowStopAddr());
+        str << "\n     ColumnStartAddr                               = " << int(aconfig.ColumnStartAddr());
+      }
+    }
+  }
 }
 
 /// Method which is called with event data, this is the only required 
@@ -500,6 +663,25 @@ DumpEpix::event(Event& evt, Env& env)
       str << "\n  lastWord = " << data2->lastWord();
     }
   }
+
+  shared_ptr<Psana::Epix::ElementV3> data3 = evt.get(m_src, "", &actualSrc);
+  if (data3) {
+    WithMsgLog(name(), info, str) {
+      str << "Epix::ElementV3 at source " << actualSrc;
+      str << "\n  vc = " << int(data3->vc());
+      str << "\n  lane = " << int(data3->lane());
+      str << "\n  acqCount = " << data3->acqCount();
+      str << "\n  frameNumber = " << data3->frameNumber();
+      str << "\n  ticks = " << data3->ticks();
+      str << "\n  fiducials = " << data3->fiducials();
+      str << "\n  frame = " << data3->frame();
+      str << "\n  calibrationRows = " << data3->calibrationRows();        //New
+      str << "\n  environmentalRows = " << data3->environmentalRows();    //New
+      str << "\n  temperatures = " << data3->temperatures();
+      str << "\n  lastWord = " << data3->lastWord();
+    }
+  }
+
 }
 
 } // namespace psana_examples
