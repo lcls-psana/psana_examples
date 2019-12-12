@@ -16,6 +16,7 @@ part of it, please give an appropriate acknowledgment.
 
 @author Andy Salnikov
 """
+from __future__ import print_function
 
 #------------------------------
 #  Module's version from SVN --
@@ -128,16 +129,16 @@ class dump_evr (object) :
         config = env.configStore().get(EvrData.Config, self.m_src)
         if config:
         
-            print "%s: %s" % (config.__class__.__name__, self.m_src)
+            print("%s: %s" % (config.__class__.__name__, self.m_src))
 
-            for tup in enumerate(config.pulses()): print _pulseConfig(*tup)
-            for tup in enumerate(config.output_maps()): print _outputMapConfig(*tup)
+            for tup in enumerate(config.pulses()): print(_pulseConfig(*tup))
+            for tup in enumerate(config.output_maps()): print(_outputMapConfig(*tup))
             try:
-                for tup in enumerate(config.eventcodes()): print _eventCodeConfig(*tup)
+                for tup in enumerate(config.eventcodes()): print(_eventCodeConfig(*tup))
             except:
                 pass
             try:
-                print _sequencerConfig(config.seq_config())
+                print(_sequencerConfig(config.seq_config()))
             except:
                 pass
 
@@ -150,6 +151,6 @@ class dump_evr (object) :
 
         data = evt.get(EvrData.Data, self.m_src)
         if data:
-            print "{0}: numFifoEvents={1}".format(data.__class__.__name__, data.numFifoEvents())
-            for tup in enumerate(data.fifoEvents()): print _fifoevent(*tup)
+            print("{0}: numFifoEvents={1}".format(data.__class__.__name__, data.numFifoEvents()))
+            for tup in enumerate(data.fifoEvents()): print(_fifoevent(*tup))
 

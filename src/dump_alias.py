@@ -16,6 +16,7 @@ part of it, please give an appropriate acknowledgment.
 
 @author Andy Salnikov
 """
+from __future__ import print_function
 
 #------------------------------
 #  Module's version from SVN --
@@ -66,10 +67,10 @@ class dump_alias (object) :
         config = env.configStore().get(Alias.Config, self.m_src)
         if config:
         
-            print "%s: %s" % (config.__class__.__name__, self.m_src)
-            print "  numSrcAlias =", config.numSrcAlias()
+            print("%s: %s" % (config.__class__.__name__, self.m_src))
+            print("  numSrcAlias =", config.numSrcAlias())
             for i, alias in enumerate(config.srcAlias()):
-                print "    {0}: {1} -> {2}".format(i, alias.aliasName(), alias.src())
+                print("    {0}: {1} -> {2}".format(i, alias.aliasName(), alias.src()))
 
     def event( self, evt, env ) :
         """This method is called for every L1Accept transition.

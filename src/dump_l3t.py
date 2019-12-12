@@ -16,6 +16,7 @@ part of it, please give an appropriate acknowledgment.
 
 @author Andy Salnikov
 """
+from __future__ import print_function
 
 #------------------------------
 #  Module's version from SVN --
@@ -67,9 +68,9 @@ class dump_l3t (object) :
         config = env.configStore().get(L3T.Config, self.m_src)
         if config:
         
-            print "%s: %s" % (config.__class__.__name__, self.m_src)
-            print "  module_id =\"{0}\"".format(config.module_id())
-            print "  description =\"{0}\"".format(config.desc())
+            print("%s: %s" % (config.__class__.__name__, self.m_src))
+            print("  module_id =\"{0}\"".format(config.module_id()))
+            print("  description =\"{0}\"".format(config.desc()))
 
     def event( self, evt, env ) :
         """This method is called for every L1Accept transition.
@@ -80,5 +81,5 @@ class dump_l3t (object) :
 
         data = evt.get(L3T.Data, self.m_src)
         if data:
-            print "{0}: accept={1}".format(data.__class__.__name__, data.accept())
+            print("{0}: accept={1}".format(data.__class__.__name__, data.accept()))
 

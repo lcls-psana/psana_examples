@@ -1,3 +1,4 @@
+from __future__ import print_function
 #--------------------------------------------------------------------------
 # File and Version Information:
 # 	$Id:
@@ -25,14 +26,14 @@ from psana import *
 #----------------------------------
 
 def _printPartition(config):
-    print "Partition::ConfigV1:"
-    print "  bldMask: 0x%16.16x" % config.bldMask()
-    print "  numSources: %d" % config.numSources()
+    print("Partition::ConfigV1:")
+    print("  bldMask: 0x%16.16x" % config.bldMask())
+    print("  numSources: %d" % config.numSources())
     sources = config.sources()
     for source in sources:
         src = source.src()
         group = source.group()
-        print "    src= %s group= %s" % (src,group)
+        print("    src= %s group= %s" % (src,group))
     
 #---------------------
 #  Class definition --
@@ -61,7 +62,7 @@ class dump_partition (object) :
 
         config = env.configStore().get(Partition.ConfigV1, Source("ProcInfo()"))
         if config:
-            print "dump_partition in beginJob()"
+            print("dump_partition in beginJob()")
             _printPartition(config)
 
 

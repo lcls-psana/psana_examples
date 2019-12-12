@@ -18,6 +18,7 @@ part of it, please give an appropriate acknowledgment.
 
 @author Andrei Salnikov
 """
+from __future__ import print_function
 
 
 #------------------------------
@@ -77,28 +78,28 @@ class dump_cspad ( object ) :
         if not config:
             return
         
-        print "dump_cspad: %s: %s" % (config.__class__.__name__, self.m_src)
-        print "  concentratorVersion =", config.concentratorVersion();
-        print "  runDelay =", config.runDelay();
-        print "  eventCode =", config.eventCode();
-        print "  inactiveRunMode =", config.inactiveRunMode();
-        print "  activeRunMode =", config.activeRunMode();
-        print "  tdi =", config.tdi();
-        print "  payloadSize =", config.payloadSize();
-        print "  badAsicMask0 =", config.badAsicMask0();
-        print "  badAsicMask1 =", config.badAsicMask1();
-        print "  asicMask =", config.asicMask();
-        print "  quadMask =", config.quadMask();
-        print "  numAsicsRead =", config.numAsicsRead();
-        print "  numQuads =", config.numQuads();
+        print("dump_cspad: %s: %s" % (config.__class__.__name__, self.m_src))
+        print("  concentratorVersion =", config.concentratorVersion());
+        print("  runDelay =", config.runDelay());
+        print("  eventCode =", config.eventCode());
+        print("  inactiveRunMode =", config.inactiveRunMode());
+        print("  activeRunMode =", config.activeRunMode());
+        print("  tdi =", config.tdi());
+        print("  payloadSize =", config.payloadSize());
+        print("  badAsicMask0 =", config.badAsicMask0());
+        print("  badAsicMask1 =", config.badAsicMask1());
+        print("  asicMask =", config.asicMask());
+        print("  quadMask =", config.quadMask());
+        print("  numAsicsRead =", config.numAsicsRead());
+        print("  numQuads =", config.numQuads());
         try:
             # older versions may not have all methods
-            print "  roiMask = [%s]" % ', '.join([hex(config.roiMask(q)) for q in range(4)])
-            print "  numAsicsStored = %s" % str(map(config.numAsicsStored, range(4)))
+            print("  roiMask = [%s]" % ', '.join([hex(config.roiMask(q)) for q in range(4)]))
+            print("  numAsicsStored = %s" % str(map(config.numAsicsStored, range(4))))
         except:
             pass
         try:
-            print "  sections = %s" % str(map(config.sections, range(4)))
+            print("  sections = %s" % str(map(config.sections, range(4))))
         except:
             pass
 
@@ -112,24 +113,24 @@ class dump_cspad ( object ) :
         nQuads = data.quads_shape()[0]
 
         # dump information about quadrants
-        print "dump_cspad: %s: %s" % (data.quads(0).__class__.__name__, self.m_src)
-        print "  Number of quadrants: %d" % nQuads
+        print("dump_cspad: %s: %s" % (data.quads(0).__class__.__name__, self.m_src))
+        print("  Number of quadrants: %d" % nQuads)
         for i in range(nQuads):
             q = data.quads(i)
             
-            print "  Quadrant #%d" % q.quad()
-            print "    virtual_channel = %s" % q.virtual_channel()
-            print "    lane = %s" % q.lane()
-            print "    tid = %s" % q.tid()
-            print "    acq_count = %s" % q.acq_count()
-            print "    op_code = %s" % q.op_code()
-            print "    quad = %s" % q.quad()
-            print "    seq_count = %s" % q.seq_count()
-            print "    ticks = %s" % q.ticks()
-            print "    fiducials = %s" % q.fiducials()
-            print "    frame_type = %s" % q.frame_type()
-            print "    sb_temp = %s" % q.sb_temp()
-            print "    common_mode = %s" % [q.common_mode(i) for i in range(q.data().shape[0])]
+            print("  Quadrant #%d" % q.quad())
+            print("    virtual_channel = %s" % q.virtual_channel())
+            print("    lane = %s" % q.lane())
+            print("    tid = %s" % q.tid())
+            print("    acq_count = %s" % q.acq_count())
+            print("    op_code = %s" % q.op_code())
+            print("    quad = %s" % q.quad())
+            print("    seq_count = %s" % q.seq_count())
+            print("    ticks = %s" % q.ticks())
+            print("    fiducials = %s" % q.fiducials())
+            print("    frame_type = %s" % q.frame_type())
+            print("    sb_temp = %s" % q.sb_temp())
+            print("    common_mode = %s" % [q.common_mode(i) for i in range(q.data().shape[0])])
             # image data as 3-dimentional array
-            print "    data shape = {}".format(q.data().shape)
-            print "    data = %s" % q.data()
+            print("    data shape = {}".format(q.data().shape))
+            print("    data = %s" % q.data())

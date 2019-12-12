@@ -16,6 +16,7 @@ part of it, please give an appropriate acknowledgment.
 
 @author Andy Salnikov
 """
+from __future__ import print_function
 
 #------------------------------
 #  Module's version from SVN --
@@ -59,17 +60,17 @@ class dump_imp (object) :
 
         config = env.configStore().get(Imp.Config, self.m_src)
         if config:
-            print "dump_imp: %s: %s" % (config.__class__.__name__, self.m_src)
-            print "  range =", config.range()
-            print "  calRange =", config.calRange()
-            print "  reset =", config.reset()
-            print "  biasData =", config.biasData()
-            print "  calData =", config.calData()
-            print "  biasDacData =", config.biasDacData()
-            print "  calStrobe =", config.calStrobe()
-            print "  numberOfSamples =", config.numberOfSamples()
-            print "  trigDelay =", config.trigDelay()
-            print "  adcDelay =", config.adcDelay()
+            print("dump_imp: %s: %s" % (config.__class__.__name__, self.m_src))
+            print("  range =", config.range())
+            print("  calRange =", config.calRange())
+            print("  reset =", config.reset())
+            print("  biasData =", config.biasData())
+            print("  calData =", config.calData())
+            print("  biasDacData =", config.biasDacData())
+            print("  calStrobe =", config.calStrobe())
+            print("  numberOfSamples =", config.numberOfSamples())
+            print("  trigDelay =", config.trigDelay())
+            print("  adcDelay =", config.adcDelay())
 
     def event( self, evt, env ) :
 
@@ -77,23 +78,23 @@ class dump_imp (object) :
         if not data:
             return
 
-        print "dump_imp: %s: %s" % (data.__class__.__name__, self.m_src)
+        print("dump_imp: %s: %s" % (data.__class__.__name__, self.m_src))
 
-        print "  vc =", data.vc()
-        print "  lane =", data.lane()
-        print "  frameNumber =", data.frameNumber()
-        print "  range =", data.range()
+        print("  vc =", data.vc())
+        print("  lane =", data.lane())
+        print("  frameNumber =", data.frameNumber())
+        print("  range =", data.range())
 
         laneStatus = data.laneStatus()
-        print "  laneStatus.linkErrCount =", laneStatus.linkErrCount()
-        print "  laneStatus.linkDownCount =", laneStatus.linkDownCount()
-        print "  laneStatus.cellErrCount =", laneStatus.cellErrCount()
-        print "  laneStatus.rxCount =", laneStatus.rxCount()
-        print "  laneStatus.locLinked =", laneStatus.locLinked()
-        print "  laneStatus.remLinked =", laneStatus.remLinked()
-        print "  laneStatus.zeros =", laneStatus.zeros()
-        print "  laneStatus.powersOkay =", laneStatus.powersOkay()
+        print("  laneStatus.linkErrCount =", laneStatus.linkErrCount())
+        print("  laneStatus.linkDownCount =", laneStatus.linkDownCount())
+        print("  laneStatus.cellErrCount =", laneStatus.cellErrCount())
+        print("  laneStatus.rxCount =", laneStatus.rxCount())
+        print("  laneStatus.locLinked =", laneStatus.locLinked())
+        print("  laneStatus.remLinked =", laneStatus.remLinked())
+        print("  laneStatus.zeros =", laneStatus.zeros())
+        print("  laneStatus.powersOkay =", laneStatus.powersOkay())
         
         for i, sample in enumerate(data.samples()):
-            print "  sample[%d]: channels = %s" % (i, sample.channels())
+            print("  sample[%d]: channels = %s" % (i, sample.channels()))
 

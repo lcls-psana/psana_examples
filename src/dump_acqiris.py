@@ -16,6 +16,7 @@ part of it, please give an appropriate acknowledgment.
 
 @author Andy Salnikov
 """
+from __future__ import print_function
 
 #------------------------------
 #  Module's version from SVN --
@@ -61,29 +62,29 @@ class dump_acqiris (object) :
         config = env.configStore().get(Acqiris.Config, self.m_src)
         if config:
         
-            print "%s: %s" % (config.__class__.__name__, self.m_src)
+            print("%s: %s" % (config.__class__.__name__, self.m_src))
             
-            print "  nbrBanks =", config.nbrBanks(),
-            print "channelMask =", config.channelMask(),
-            print "nbrChannels =", config.nbrChannels(),
-            print "nbrConvertersPerChannel =", config.nbrConvertersPerChannel()
+            print("  nbrBanks =", config.nbrBanks(), end=' ')
+            print("channelMask =", config.channelMask(), end=' ')
+            print("nbrChannels =", config.nbrChannels(), end=' ')
+            print("nbrConvertersPerChannel =", config.nbrConvertersPerChannel())
      
             h = config.horiz()
-            print "  horiz: sampInterval =", h.sampInterval(),
-            print "delayTime =", h.delayTime(),
-            print "nbrSegments =", h.nbrSegments(),
-            print "nbrSamples =", h.nbrSamples()
+            print("  horiz: sampInterval =", h.sampInterval(), end=' ')
+            print("delayTime =", h.delayTime(), end=' ')
+            print("nbrSegments =", h.nbrSegments(), end=' ')
+            print("nbrSamples =", h.nbrSamples())
 
             nch = config.nbrChannels()
             vert = config.vert()
             for ch in range(nch):
                 v = vert[ch]
-                print "  vert(%d):" % ch,
-                print "fullScale =", v.fullScale(),
-                print "slope =", v.slope(),
-                print "offset =", v.offset(),
-                print "coupling =", v.coupling(),
-                print "bandwidth=", v.bandwidth()
+                print("  vert(%d):" % ch, end=' ')
+                print("fullScale =", v.fullScale(), end=' ')
+                print("slope =", v.slope(), end=' ')
+                print("offset =", v.offset(), end=' ')
+                print("coupling =", v.coupling(), end=' ')
+                print("bandwidth=", v.bandwidth())
 
     def event( self, evt, env ) :
         """This method is called for every L1Accept transition.
@@ -108,10 +109,10 @@ class dump_acqiris (object) :
             slope = v.slope()
             offset = v.offset()
 
-            print "Acqiris::DataDescV1: channel=%d" % chan ### XXX should print real class name instead
-            print "  nbrSegments=%d" % elem.nbrSegments()
-            print "  nbrSamplesInSeg=%d" % elem.nbrSamplesInSeg()
-            print "  indexFirstPoint=%d" % elem.indexFirstPoint()
+            print("Acqiris::DataDescV1: channel=%d" % chan) ### XXX should print real class name instead
+            print("  nbrSegments=%d" % elem.nbrSegments())
+            print("  nbrSamplesInSeg=%d" % elem.nbrSamplesInSeg())
+            print("  indexFirstPoint=%d" % elem.indexFirstPoint())
 
             timestamps = elem.timestamp()
             raw = elem.waveforms()
@@ -119,7 +120,7 @@ class dump_acqiris (object) :
 
             # loop over segments
             for seg in range(elem.nbrSegments()):
-                print "  Segment #%d" % seg
-                print "    timestamp =", timestamps[seg].pos()
-                print "    raw =", raw[seg]
-                print "    wf =", wf[seg]
+                print("  Segment #%d" % seg)
+                print("    timestamp =", timestamps[seg].pos())
+                print("    raw =", raw[seg])
+                print("    wf =", wf[seg])

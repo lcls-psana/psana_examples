@@ -16,6 +16,7 @@ part of it, please give an appropriate acknowledgment.
 
 @author Andy Salnikov
 """
+from __future__ import print_function
 
 #------------------------------
 #  Module's version from SVN --
@@ -57,21 +58,21 @@ class dump_epixsampler (object) :
     def beginRun( self, evt, env ) :
         config = env.configStore().get(EpixSampler.Config, self.m_src)
         if config:
-            print "dump_epixsampler: %s: %s" % (config.__class__.__name__, self.m_src)
-            print "  version =", config.version()
-            print "  runTrigDelay =", config.runTrigDelay()
-            print "  daqTrigDelay =", config.daqTrigDelay()
-            print "  daqSetting =", config.daqSetting()
-            print "  adcClkHalfT =", config.adcClkHalfT()
-            print "  adcPipelineDelay =", config.adcPipelineDelay()
-            print "  digitalCardId0 =", config.digitalCardId0()
-            print "  digitalCardId1 =", config.digitalCardId1()
-            print "  analogCardId0 =", config.analogCardId0()
-            print "  analogCardId1 =", config.analogCardId1()
-            print "  numberOfChannels =", config.numberOfChannels()
-            print "  samplesPerChannel =", config.samplesPerChannel()
-            print "  baseClockFrequency =", config.baseClockFrequency()
-            print "  testPatternEnable =", config.testPatternEnable()
+            print("dump_epixsampler: %s: %s" % (config.__class__.__name__, self.m_src))
+            print("  version =", config.version())
+            print("  runTrigDelay =", config.runTrigDelay())
+            print("  daqTrigDelay =", config.daqTrigDelay())
+            print("  daqSetting =", config.daqSetting())
+            print("  adcClkHalfT =", config.adcClkHalfT())
+            print("  adcPipelineDelay =", config.adcPipelineDelay())
+            print("  digitalCardId0 =", config.digitalCardId0())
+            print("  digitalCardId1 =", config.digitalCardId1())
+            print("  analogCardId0 =", config.analogCardId0())
+            print("  analogCardId1 =", config.analogCardId1())
+            print("  numberOfChannels =", config.numberOfChannels())
+            print("  samplesPerChannel =", config.samplesPerChannel())
+            print("  baseClockFrequency =", config.baseClockFrequency())
+            print("  testPatternEnable =", config.testPatternEnable())
 
     def event( self, evt, env ) :
 
@@ -79,12 +80,12 @@ class dump_epixsampler (object) :
         if not data:
             return
 
-        print "dump_epixsampler: %s: %s" % (data.__class__.__name__, self.m_src)
-        print "  vc =", data.vc()
-        print "  lane =", data.lane()
-        print "  acqCount =", data.acqCount()
-        print "  frameNumber =", data.frameNumber()
-        print "  ticks =", data.ticks()
-        print "  fiducials =", data.fiducials()
-        print "  temperatures =", data.temperatures()
-        print "  frame =", data.frame()
+        print("dump_epixsampler: %s: %s" % (data.__class__.__name__, self.m_src))
+        print("  vc =", data.vc())
+        print("  lane =", data.lane())
+        print("  acqCount =", data.acqCount())
+        print("  frameNumber =", data.frameNumber())
+        print("  ticks =", data.ticks())
+        print("  fiducials =", data.fiducials())
+        print("  temperatures =", data.temperatures())
+        print("  frame =", data.frame())
