@@ -95,11 +95,11 @@ class dump_cspad ( object ) :
         try:
             # older versions may not have all methods
             print("  roiMask = [%s]" % ', '.join([hex(config.roiMask(q)) for q in range(4)]))
-            print("  numAsicsStored = %s" % str(map(config.numAsicsStored, range(4))))
+            print("  numAsicsStored = %s" % str(list(map(config.numAsicsStored, range(4)))))
         except:
             pass
         try:
-            print("  sections = %s" % str(map(config.sections, range(4))))
+            print("  sections = %s" % str(list(map(config.sections, range(4)))))
         except:
             pass
 
